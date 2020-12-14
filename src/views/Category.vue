@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <v-subheader class="grey--text">关于</v-subheader>
+  <div class="category">
+    <v-subheader class="grey--text">分类</v-subheader>
     <v-container class="my-5">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium,
@@ -17,3 +17,7 @@
     </v-container>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
