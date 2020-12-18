@@ -12,6 +12,8 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
+import 'github-markdown-css/github-markdown.css'
+
 export default {
   name: 'App',
   components: {Navbar, Footer},

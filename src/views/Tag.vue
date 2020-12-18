@@ -3,11 +3,11 @@
     <v-subheader class="grey--text">标签</v-subheader>
     <v-container class="my-5 mx-1">
       <v-col cols="12" md="9" offset="0" offset-md="2" class="d-flex justify-center flex-wrap" >
-        <v-chip v-for="tag in tags" :key="tag" @click="clickTag(tag)"
+        <v-chip v-for="tag in tags" :key="tag.id" @click="clickTag(tag.name)"
         depressed
         class="ma-3 align-self-center rounded-pill"
         :style="randomTagStyle()">
-          {{tag}}
+          {{tag.name}}
         </v-chip>
       </v-col>
     </v-container>
@@ -18,22 +18,7 @@
 export default {
   data() {
     return {
-      tags:[
-        'JavaEE',
-        'Python',
-        'C++',
-        'JavaScript',
-        'html',
-        'css',
-        'scss',
-        '编译原理',
-        '计算机图形学',
-        '证券投资学',
-        '屁眼子小分队',
-        '大屁眼子',
-        '没屁眼字',
-        '好汀！'
-      ]
+      tags:{}
     }
   },
   methods:{
@@ -56,6 +41,11 @@ export default {
         opacity
       }
     }
+  },
+  created(){
+    this.$api.getTags().then((res)=>{
+      this.tags = res
+    })
   }
 };
 </script>

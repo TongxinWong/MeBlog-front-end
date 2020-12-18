@@ -5,8 +5,10 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
+Vue.prototype.$api = require('./util/api.js')
+
 new Vue({
   router,
-  vuetify,
+  vuetify, 
   render: h => h(App)
 }).$mount('#app')
