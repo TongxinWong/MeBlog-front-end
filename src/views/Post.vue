@@ -23,10 +23,17 @@
                 </vue-markdown>
             </v-col>
         </v-row>
+        <v-row>
+            <v-col cols="12" sm="10" offset-sm="1">
+                <div id="gitalk-container"></div>
+            </v-col>
+        </v-row>
     </div>
 </template>
 <script>
 import VueMarkdown from 'vue-markdown'
+import 'gitalk/dist/gitalk.css'
+import Gitalk from 'gitalk'
 export default {
     components:{
         VueMarkdown
@@ -39,7 +46,18 @@ export default {
                 content:'',
                 gmtCreate:'',
                 gmtModified:''
-            }
+            },
+            gitalk: new Gitalk({
+                clientID: 'f95ac14741bbe5099cbb',
+                clientSecret: '615c181f6e193c373752e7cf7d4f6901591a499d',
+                repo: 'MeBlog-Comments',
+                owner: 'TongxinWong',
+                admin: ['TongxinWong'],
+                id: location.pathname,      // Ensure uniqueness and length less than 50
+                distractionFreeMode: false, // Facebook-like distraction free mode
+                labels: ['Gitalk', location.pathname],
+                number: parseInt(location.pathname.substring(6))
+            })
         }
     },
     props:[
@@ -50,6 +68,9 @@ export default {
             this.post = res
             this.post.content = res.body && res.body.content
         })
+    },
+    mounted(){
+        this.gitalk.render('gitalk-container')
     }
 }
 </script>
