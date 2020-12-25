@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+const api = require('../util/api.js')
+
 import Home from '../views/Home.vue'
 import Archive from '../views/Archive.vue'
 
@@ -88,6 +90,27 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+let loginState = false
+router.beforeEach((to, from, next)=>{
+  from
+  let isAdmin = to.path.startsWith('/admin') && to.path != '/admin/login'
+  // 不是后台操作直接过
+  if(!isAdmin) return next()
+  // 是后台操作，且当前没登录
+  if(!loginState){
+    api.checkLoginState().then((res)=>{
+      console.log(res)
+      if(res.code == 200){
+        loginState = true
+        return next()
+      }
+      else{
+        return next('/admin/login')
+      }
+    })
+  }
 })
 
 export default router

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import vuetify from './plugins/vuetify';
+import vuetify from './plugins/vuetify'
 
-Vue.config.productionTip = false
+import Axios from 'axios'
+Axios.defaults.withCredentials = true;
+
 
 Vue.prototype.$api = require('./util/api.js')
 

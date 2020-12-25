@@ -82,3 +82,32 @@ export const updatePost = async (post)=>{
         })
     })
 }
+
+export const login = async (username, password)=>{
+    let formdate = new FormData()
+    formdate.append('username', username)
+    formdate.append('password', password)
+    return new Promise((resolve, reject)=>{
+        Axios.post(ADMIN_URL+'login', formdate, {headers:{'Content-Type': 'multipart/form-data'}}).then(res=>{
+            if(res.status == 200){
+                resolve(res.data)
+            }
+            else{
+                reject(res)
+            }
+        })
+    })
+}
+
+export const checkLoginState = async ()=>{
+    return new Promise((resolve, reject)=>{
+        Axios.get(ADMIN_URL+'state').then(res=>{
+            if(res.status == 200){
+                resolve(res.data)
+            }
+            else{
+                reject(res)
+            }
+        })
+    })
+}
