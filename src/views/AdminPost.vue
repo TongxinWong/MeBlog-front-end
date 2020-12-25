@@ -1,10 +1,15 @@
 <template>
     <v-container class="px-8 d-flex flex-column align-center">
-        <v-text-field outlined label="请输入标题" style="min-width:30%;"
+        <v-text-field outlined label="请输入标题" style="min-width:40%;"
             v-model="post.title"
         />
+
+        <v-combobox  label="文章分类" v-model="selectCategory" multiple :items="allCategories"
+            class="mt-n3"
+        ></v-combobox>
+
         <v-chip-group class="mt-n4 mb-4">
-            <v-chip v-for="(tag,index) in post.tags" :key="index" close>
+            <v-chip v-for="(tag,index) in post.tags" :key="index" close @click:close="deleteTag(tag.name)">
                 {{tag.name}}
             </v-chip>
             <v-chip complete style="width:130px;" close close-icon="mdi-plus" @click:close="addTag(newTagText)" >
@@ -13,6 +18,7 @@
                 </v-text-field>
             </v-chip>
         </v-chip-group>
+
         <mavon-editor 
             v-model="post.content" 
             ref="md"
@@ -27,6 +33,7 @@
 <script>
 import {mavonEditor} from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+//import { config } from 'vue/types/umd'
 
 export default {
     components:{
@@ -34,6 +41,8 @@ export default {
     },
     data(){
         return {
+            selectCategory:[],
+            allCategories:[],
             showTagWarning:false,
             newTagText:'',
             post:{
@@ -58,9 +67,10 @@ export default {
             this.post.tags.push({
                 name:tagName
             })
+            this.newTagText = ''
         },
         deleteTag(tagName){
-            tagName
+            this.post.tags = this.post.tags.filter((item)=>item.name != tagName)
         }
     },
     created(){
@@ -68,6 +78,19 @@ export default {
             this.post = res
             this.post.content = res.body && res.body.content
             console.log(res)
+            let r = []
+            this.post.categories.forEach(ele=>{
+                r.push(ele.name)
+            })
+            this.selectCategory = r
+        })
+        // 获取所有分类
+        this.$api.getCategories().then(res=>{
+            let r = []
+            res.forEach(ele => {
+                r.push(ele.name)
+            });
+            this.allCategories = r
         })
     }
 }

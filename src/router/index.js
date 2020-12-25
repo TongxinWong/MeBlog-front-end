@@ -13,7 +13,7 @@ import About from '../views/About.vue'
 import Post from '../views/Post.vue'
 import AdminLogin from '../views/AdminLogin.vue'
 import AdminHome from '../views/AdminHome.vue'
-import AdminPost from '../views/AdminPost.vue'
+import AdminNewPost from '../views/AdminNewPost.vue'
 
 Vue.use(VueRouter)
 
@@ -75,7 +75,12 @@ const routes = [
     path: '/admin/post/:id',
     name: 'AdminPost',
     props: true,
-    component: AdminPost
+    component: AdminNewPost
+  },
+  {
+    path: '/admin/newpost',
+    name: 'AdminNewPost',
+    component: AdminNewPost
   }
 ]
 

@@ -20,7 +20,7 @@
           <v-avatar size="100">
             <img src="https://i.loli.net/2020/12/24/LwVrcGh1s6BqFPf.jpg" alt="Avatar">
           </v-avatar>
-          <p class="white--text subtitle-1 mt-1">Your name</p>
+          <p class="white--text subtitle-1 mt-1">MeBlog</p>
         </v-col>
       </v-row>
       <v-list>

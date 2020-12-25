@@ -3,7 +3,7 @@
         <v-img
         contain
         class="white--text align-end"
-        :src="post.imgUrl === null?imgDefaultUrl:post.imgUrl"
+        :src="post.imgUrl?post.imgUrl:imgDefaultUrl"
         @click="clickPost"
         style="cursor:pointer"
         >
