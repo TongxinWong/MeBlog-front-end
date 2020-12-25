@@ -3,7 +3,7 @@
     <v-subheader class="grey--text">标签</v-subheader>
     <v-container class="my-5 mx-1">
       <v-col cols="12" md="9" offset="0" offset-md="2" class="d-flex justify-center flex-wrap" >
-        <v-chip v-for="tag in tags" :key="tag.id" @click="clickTag(tag.name)"
+        <v-chip v-for="tag in tags" :key="tag.id" @click="clickTag(tag.id)"
         depressed
         class="ma-3 align-self-center rounded-pill"
         :style="randomTagStyle()">
@@ -22,9 +22,8 @@ export default {
     }
   },
   methods:{
-    clickTag(tagName){
-      tagName
-      window.open('https://www.baidu.com','_blank')
+    clickTag(tagId){
+      console.log(this.$router.push({name:"TagPosts", params:{id:tagId}}))
     },
     randomTagStyle(){
       const rdMax = 20;

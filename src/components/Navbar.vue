@@ -9,7 +9,7 @@
         </span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon color="grey">
+      <v-btn icon color="grey" @click="$router.push('/admin/login')">
         <v-icon large>mdi-account-circle-outline</v-icon>
       </v-btn>
     </v-app-bar>

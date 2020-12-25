@@ -28,7 +28,7 @@ export default {
         'id'
     ],
     created(){
-        this.$api.getCategoryPosts(this.id).then((res)=>{
+        this.$api.getTagPosts(this.id).then((res)=>{
             this.categoryName = res.name
             res.posts.forEach((ele) => {
                 ele.show = false;

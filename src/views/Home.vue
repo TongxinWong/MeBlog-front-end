@@ -47,17 +47,14 @@ export default {
     }
   },
   methods: {
-    getAllPosts(){
-      this.$api.getAllPosts().then((res) => {
-        res.forEach((ele) => {
-          ele.show = false;
-        })
-        this.posts = res
-      })
-    },
   },
   created() {
-    this.getAllPosts();
+    this.$api.getAllPosts().then((res) => {
+      res.forEach((ele) => {
+        ele.show = false;
+      })
+      this.posts = res
+    })
   },
 };
 </script>

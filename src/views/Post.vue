@@ -9,7 +9,7 @@
             更新于：{{post.gmtModified}}
         </div>
         <v-col class="text-center py-0">
-            <router-link v-for="tag in post.tags" :key="tag.id" :to="'/tag/'+tag.id"
+            <router-link v-for="tag in post.tags" :key="tag.id" :to="'/tag/'+tag.id+'/posts'"
             class="mx-2 black--text text--secondary">
                 <v-icon size="16" style="vertical-align:inherit;">mdi-tag-outline</v-icon>{{tag.name}}
             </router-link>

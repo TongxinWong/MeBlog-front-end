@@ -35,3 +35,12 @@ export const getCategoryPosts = async (categoryId)=>{
     return myRequest(`category/${categoryId}/posts`)
 }
 
+export const getTagPosts = async (tagId)=>{
+    return myRequest(`tag/${tagId}/posts`)
+}
+
+
+export const deletePost = async (postId)=>{
+    postId
+    return true
+}
