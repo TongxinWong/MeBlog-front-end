@@ -1,6 +1,7 @@
 import Axios from "axios"
 
-const BASE_URL = 'http://localhost:8081/api/'
+//const BASE_URL = 'http://localhost:8081/api/'
+const BASE_URL = 'http://120.25.24.74:8081/api/'
 
 export const myRequest = async (url)=>{
     return new Promise((resolve, reject)=>{
