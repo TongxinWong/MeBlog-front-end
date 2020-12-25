@@ -17,6 +17,8 @@ import AdminLogin from '../views/AdminLogin.vue'
 import AdminHome from '../views/AdminHome.vue'
 import AdminNewPost from '../views/AdminNewPost.vue'
 
+import NotFound from '../views/NotFound.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -83,6 +85,11 @@ const routes = [
     path: '/admin/newpost',
     name: 'AdminNewPost',
     component: AdminNewPost
+  },
+  {
+    path: '*',
+    name: '404',
+    component: NotFound
   }
 ]
 

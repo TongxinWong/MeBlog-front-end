@@ -9,7 +9,7 @@
         </span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon color="grey" @click="$router.push('/admin/login')">
+      <v-btn icon color="grey" @click="clickUser">
         <v-icon large>mdi-account-circle-outline</v-icon>
       </v-btn>
     </v-app-bar>
@@ -49,6 +49,18 @@ export default {
       {icon: 'mdi-tag-multiple', text: '标签', route: '/tag'},
       {icon: 'mdi-information', text: '关于', route: '/about'}
     ]
-  })
+  }),
+  methods: {
+    clickUser(){
+      this.$api.checkLoginState().then((res)=>{
+        if(res.code == 200){
+          this.$router.push('/admin')
+        }
+        else{
+          this.$router.push('/admin/login')
+        }
+      })
+    }
+  },
 };
 </script>
