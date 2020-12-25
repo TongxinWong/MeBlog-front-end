@@ -13,6 +13,7 @@
             </v-form>
         </v-col>
       </v-container>
+      <v-snackbar v-model="showError">登录出现错误：{{errorText}}</v-snackbar>
   </div>
 </template>
 
@@ -24,13 +25,21 @@ export default {
         username: '',
         password: '',
         loading:false,
+        showError:false,
+        errorText:'',
     }
   },
   methods:{
       validate () {
         if(this.$refs.form.validate()){
           this.$api.login(this.username, this.password).then(res=>{
-            console.log(res)
+            if(res.code == 200){
+              this.$router.push('/admin')
+            }
+            else{
+              this.errorText = res
+              this.showError = true
+            }
           })
         }
       },

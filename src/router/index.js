@@ -92,25 +92,23 @@ const router = new VueRouter({
   routes
 })
 
-let loginState = false
+// api
 router.beforeEach((to, from, next)=>{
   from
-  let isAdmin = to.path.startsWith('/admin') && to.path != '/admin/login'
+  let isAdmin = to.path.startsWith('/admin') || to.path.startsWith('admin')
+  isAdmin = isAdmin && (to.path != '/admin/login')
   // 不是后台操作直接过
   if(!isAdmin) return next()
-  // 是后台操作，且当前没登录
-  if(!loginState){
-    api.checkLoginState().then((res)=>{
-      console.log(res)
-      if(res.code == 200){
-        loginState = true
-        return next()
-      }
-      else{
-        return next('/admin/login')
-      }
-    })
-  }
+  // 是后台操作
+  api.checkLoginState().then((res)=>{
+    console.log(res)
+    if(res.code == 200){
+      return next()
+    }
+    else{
+      return next('/admin/login')
+    }
+  })
 })
 
 export default router

@@ -43,6 +43,24 @@ export const getTagPosts = async (tagId)=>{
 }
 
 
+export const adminRequest = async (url, method='get', data={})=>{
+    return new Promise((resolve, reject)=>{
+        Axios({
+            url:ADMIN_URL+url,
+            method,
+            data,
+        })
+        .then((res)=>{
+            if(res.status == 200){
+                resolve(res.data)
+            }
+            else{
+                reject(res)
+            }
+        })
+    })
+}
+
 export const deletePost = async (postId)=>{
     return new Promise((resolve, reject)=>{
         Axios.delete(ADMIN_URL+'post/'+postId).then((res)=>{
@@ -57,30 +75,11 @@ export const deletePost = async (postId)=>{
 }
 
 export const newPost = async (post)=>{
-    return new Promise((resolve, reject)=>{
-        Axios.post(ADMIN_URL+'post/', post).then((res)=>{
-            console.log(res)
-            if(res.status == 200){
-                resolve(res.data)
-            }
-            else{
-                reject(res)
-            }
-        })
-    })
+    return adminRequest('post/','post', post)
 }
 
 export const updatePost = async (post)=>{
-    return new Promise((resolve, reject)=>{
-        Axios.put(ADMIN_URL+'post/', post).then(res=>{
-            if(res.status == 200){
-                resolve(res.data)
-            }
-            else{
-                reject(res)
-            }
-        })
-    })
+    return adminRequest('post/', 'put', post)
 }
 
 export const login = async (username, password)=>{
@@ -100,14 +99,5 @@ export const login = async (username, password)=>{
 }
 
 export const checkLoginState = async ()=>{
-    return new Promise((resolve, reject)=>{
-        Axios.get(ADMIN_URL+'state').then(res=>{
-            if(res.status == 200){
-                resolve(res.data)
-            }
-            else{
-                reject(res)
-            }
-        })
-    })
+    return adminRequest('state')
 }

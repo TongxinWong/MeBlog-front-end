@@ -73,7 +73,7 @@ export default {
     },
     methods:{
         editPost(postId){
-            this.$router.push('admin/post/'+postId)
+            this.$router.push('/admin/post/'+postId)
         },
         deletePost(postId){
             this.$api.deletePost(postId).then(res=>{
